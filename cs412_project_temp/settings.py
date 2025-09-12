@@ -130,15 +130,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/' # note: no leading slash!
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    BASE_DIR/"static",
+    BASE_DIR/"quotes",
+
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = BASE_DIR/ 'media'
 MEDIA_URL= "media/"  # note: no leading slash!
 
 import socket
 CS_DEPLOYMENT_HOSTNAME = 'cs-webapps.bu.edu'
 
-if socket.gethostname() == CS_DEPLOYMENT_HOSTNAME:
+if 'CS_WEBAPPS' == os.environ:
     STATIC_URL = '/sarahl/static/'
     MEDIA_URL = '/sarahl/media/'
