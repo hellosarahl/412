@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-74!mddrr)&5m___-@u@kd@!3rtj1_!vxl884x-l=bt^qh-*ryh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ 'cs-webapps.bu.edu']
+ALLOWED_HOSTS =['localhost', '127.0.0.1', 'cs-webapps.bu.edu']
 
 
 # Application definition
@@ -126,11 +127,8 @@ STATIC_ROOT=BASE_DIR/"staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = 'static/' # note: no leading slash!
-
 STATICFILES_DIRS = [
-    BASE_DIR/"static",
+ 
     BASE_DIR/"quotes",
 
 ]
@@ -138,9 +136,9 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR/ 'media'
 MEDIA_URL= "media/"  # note: no leading slash!
 
-import socket
+
 CS_DEPLOYMENT_HOSTNAME = 'cs-webapps.bu.edu'
 
-if 'CS_WEBAPPS' == os.environ:
+if socket.gethostname() == CS_DEPLOYMENT_HOSTNAME:
     STATIC_URL = '/sarahl/static/'
     MEDIA_URL = '/sarahl/media/'
