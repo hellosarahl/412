@@ -1,8 +1,8 @@
 
-{%load static%}
+{% load static %}
 <html>
     <head>
-        <title>{% block title %} Quotes{%endblock%}</title>
+        <title>{% block title %} Quotes{% endblock %}</title>
 <link rel="stylesheet" href="{% static 'quotes/style.css' %}">
     </head>
     <body>
@@ -10,12 +10,11 @@
             <h1>Quotes app</h1>
         </header>
         <nav>
-            <a href="/sarahl/show_all/">Show all</a>
-            <a href="/sarahl/">Quotes</a>
-            <a href="/sarahl/about/">About</a>
-
+            <a href="{% url 'show_all' %}" >Show all</a>
+           <a href= "{% url 'quote' %}">Quotes</a>
+         <a href=  "{% url 'about' %}">About</a>
         </nav>
-            {%block content%}{%endblock%}
+            {% block content %}{% endblock %}
             </body>
 </html>
 
